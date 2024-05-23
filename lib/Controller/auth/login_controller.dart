@@ -2,6 +2,7 @@ import 'package:checkupapp/Controller/auth/signup_controller.dart';
 import 'package:checkupapp/Core/Class/statusrequest.dart';
 import 'package:checkupapp/Core/Constant/routes.dart';
 import 'package:checkupapp/Core/Function/handlingdatacontroller.dart';
+import 'package:checkupapp/Core/Services/SharedPre.dart';
 import 'package:checkupapp/Data/DataSource/Remote/Auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,7 +23,7 @@ class LoginControllerImp extends LoginController {
   bool isShowPassword = true;
   Map data = {};
   showPassword() {
-    isShowPassword == true ? false : true;
+    isShowPassword =!isShowPassword;
     update();
   }
 
@@ -36,7 +37,11 @@ class LoginControllerImp extends LoginController {
       statusRequest = handlingData(response);
       if (StatusRequest.success == statusRequest) {
          data.addAll(response['data']);
-        Get.offNamed(AppRoutes.QuestionView, arguments: {
+       //  Get.offNamed(AppRoutes.homepage);
+         String t=data['token'];
+         print(t);
+         SharedPrefrenceHelper.saveData(key: 't', value: t);
+        Get.offNamed(AppRoutes.homepage, arguments: {
           "email": email.text,
           "password" : password.text  ,
           "token":data["token"],

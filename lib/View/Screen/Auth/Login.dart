@@ -68,7 +68,7 @@ class Login extends StatelessWidget {
                },
                mycontroller: controller.password,
                hinttext: "14".tr,
-               iconData: Icons.lock_outline,
+               iconData:controller.isShowPassword? Icons.visibility:Icons.visibility_off,
                labeltext: "20".tr,
                // mycontroller: ,
              ),),

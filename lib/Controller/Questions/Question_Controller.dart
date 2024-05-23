@@ -22,8 +22,9 @@ class QuestionsController extends GetxController {
   final List<QuestionsModel> answers = [];
 
   getData() async {
+    String t =SharedPrefrenceHelper.getData(key: 't');
     statusRequest = StatusRequest.loading;
-    var response = await questionData.getData(token!);
+    var response = await questionData.getData(t);
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       data.addAll(response['data']);
@@ -37,11 +38,12 @@ class QuestionsController extends GetxController {
   }
 
   Future<http.Response> pushDataToAPI() async {
+    String test=SharedPrefrenceHelper.getData(key: "t");
     final AnswerQuestionModel answerData =
         AnswerQuestionModel(questions: answers);
     final response = await http.post(
       Uri.parse("https://checkup.azad.digital/api/questions-submit"),
-      headers: {'Content-Type': 'application/json', 'Authorization': token!},
+      headers: {'Content-Type': 'application/json', 'Authorization': test},
       body: jsonEncode(answerData.toJson()),
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -77,9 +79,6 @@ class QuestionsController extends GetxController {
 
   @override
   void onInit() {
-    token = Get.arguments['token'];
-
- // var test=SharedPrefrenceHelper.saveData(key: "token", value:token);
     getData();
     super.onInit();
   }

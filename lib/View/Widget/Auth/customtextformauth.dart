@@ -1,3 +1,4 @@
+import 'package:checkupapp/Core/Constant/Color.dart';
 import 'package:flutter/material.dart';
 
 class CustonTextFormAuth extends StatelessWidget {
@@ -41,7 +42,7 @@ class CustonTextFormAuth extends StatelessWidget {
                 child: Text(labeltext)),
             suffixIcon:InkWell(
               onTap:onTapIcon,
-              child:  Icon(iconData),
+              child:  Icon(iconData,color: AppColor.primaryColor,),
             ),
             border:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(10))),

@@ -2,6 +2,7 @@ import 'package:checkupapp/Controller/auth/logout_controller.dart';
 import 'package:checkupapp/Core/Class/statusrequest.dart';
 import 'package:checkupapp/Core/Constant/Color.dart';
 import 'package:checkupapp/View/Screen/Profile.dart';
+import 'package:checkupapp/View/Screen/Question/QuestionView.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -41,6 +42,16 @@ class CustomDrawer extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileScreen()));
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.question_mark),
+              title: const Text(
+                'Questions Check Up',
+                style: TextStyle(fontSize: 24.0),
+              ),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>QuestionView()));
               },
             ),
             ListTile(
